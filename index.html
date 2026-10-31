@@ -36,10 +36,106 @@
         </style>
 
         <style>
-        #map {
-            width: 932px;
-            height: 665px;
-        }
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="resources/ol.css">
+        <link rel="stylesheet" href="resources/font-awesome.min.css">
+        <link rel="stylesheet" href="resources/ol-layerswitcher.css">
+        <link rel="stylesheet" href="resources/qgis2web.css">
+        <style>
+            /* Full Screen Map Fix */
+            html, body {
+                background-color: #ffffff;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            #map {
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            
+            /* Map Title Styling */
+            .map-title {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.9);
+                padding: 8px 20px;
+                font-family: Arial, sans-serif;
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+                border-radius: 4px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+                z-index: 1000;
+            }
+
+            /* North Arrow Styling */
+            .north-arrow {
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 5px 10px;
+                font-family: Arial, sans-serif;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 4px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+                z-index: 1000;
+                text-align: center;
+            }
+        </style>
+        <title>Karvir Web-GIS Map</title>
+    </head>
+    <body>
+        <!-- Map Title -->
+        <div class="map-title">Spatiotemporal Analysis Map - Karvir Region</div>
+
+        <!-- North Arrow -->
+        <div class="north-arrow">N<br>▲</div>
+
+        <!-- Map Container -->
+        <div id="map">
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+        </div>
+
+        <script src="resources/qgis2web_expressions.js"></script>
+        <script src="resources/polyfills.js"></script>
+        <script src="resources/functions.js"></script>
+        <script src="resources/ol.js"></script>
+        <script src="resources/ol-layerswitcher.js"></script>
+        <script src="layers/karvir_layer.js"></script> <!-- Tumchi layer file -->
+        <script src="styles/karvir_style.js"></script>
+        <script src="layers/layers.js" type="text/javascript"></script> 
+        <script src="resources/qgis2web.js"></script>
+        <script src="resources/ol-scale-line.js"></script>
+        <script>
+            // Add Scale Line Control automatically via OpenLayers
+            var scaleLine = new ol.control.ScaleLine({
+                units: 'metric',
+                className: 'ol-scale-line'
+            });
+            map.addControl(scaleLine);
+        </script>
+    </body>
+</html>
         </style>
         <title></title>
     </head>
